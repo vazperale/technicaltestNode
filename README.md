@@ -24,10 +24,10 @@ How to run the project:
 
     ```bash
     DB_HOST='normally the better option is put db'
-    DB_PORT='normally the better option is 5432, but depends of your critery
-    DB_USERNAME=choose the username you want to use
-    DB_PASSWORD=your password
-    DB_NAME=the name that you decide for the bd
+    DB_PORT='normally the better option is 5432, but depends of your critery'
+    DB_USERNAME='choose the username you want to use'
+    DB_PASSWORD='your password'
+    DB_NAME='the name that you decide for the bd'
     ```
 
 5. You need to have docker installed, or docker desktop running. Run the docker container:
