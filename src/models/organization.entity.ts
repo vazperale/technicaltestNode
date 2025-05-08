@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
-//import { ChargePoint } from './chargepoint.entity';   //dejo ya lista la estructura para cuando se haga los endpoints de chargerPoints
+import { ChargePoint } from './chargepoint.entity';   //dejo ya lista la estructura para cuando se haga los endpoints de chargerPoints
 
 @Entity()
 export class Organization {
@@ -17,6 +17,6 @@ export class Organization {
   @IsString()  
   legalEntity: string;
 
-  /*@OneToMany(() => ChargePoint, chargePoint => chargePoint.organization)
-  chargePoints: ChargePoint[];*/
+  @OneToMany(() => ChargePoint, chargePoint => chargePoint.cpo)
+  chargePoints: ChargePoint[];
 }

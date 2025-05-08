@@ -24,13 +24,15 @@ export class OrganizationService {
   }
 
   async getOrganizations(): Promise<Organization[]> {
-    return await this.organizationRepository.find();
+    return await this.organizationRepository.find({ relations: ['chargePoints'] });
   }
 
   
-  async getOrganizationById(id: string): Promise<Organization | null> {
-    
-    return await this.organizationRepository.findOneBy({ id });
+  async getOrganizationById(id: string): Promise<Organization | null> { 
+    return await this.organizationRepository.findOne({
+        where: { id: id }, 
+        relations: ['chargePoints'] 
+      });
   }
 
   
