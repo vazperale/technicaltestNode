@@ -23,11 +23,11 @@ How to run the project:
 4. Create .env in the root project folder and add the following variable:
 
     ```bash
-    DB_HOST='normally the better option is put db'
-    DB_PORT='normally the better option is 5432, but depends of your critery'
+    DB_HOST=db 
+    DB_PORT='normally the default option is 5432, but depends of your critery'
     DB_USERNAME='choose the username you want to use'
     DB_PASSWORD='your password'
-    DB_NAME='the name that you decide for the bd'
+    DB_NAME='the name that you decide for the db'
     ```
 
 5. You need to have docker installed, or docker desktop running. Run the docker container:
