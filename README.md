@@ -43,7 +43,7 @@ How to run the project:
 
 # Comments about the app:
 
--Default port is 3000,but you can change it
+-Default port is 3000,but you can change it (change in the app and in the docker files)
 
 -try to capture the specific errors, for a better understanding of the errors,and capture the required values to introduce in body
 
