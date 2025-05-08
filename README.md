@@ -49,5 +49,7 @@ How to run the project:
 
 -Add swagger/openApi for explain better the endpoints,the parameters,responses...,enter in endpoint "/api-docs" in the web
 
+-when you delete a organization, the assigned chargepoints will be deleted in cascade
+
 
  
