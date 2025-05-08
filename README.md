@@ -47,5 +47,7 @@ How to run the project:
 
 -try to capture the specific errors, for a better understanding of the errors,and capture the required values to introduce in body
 
--Add swagger/openApi for explain better the endpoints,the parameters,responses...
+-Add swagger/openApi for explain better the endpoints,the parameters,responses...,enter in endpoint "/api-docs" in the web
+
+
  
