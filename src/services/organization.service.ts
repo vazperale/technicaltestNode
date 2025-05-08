@@ -2,9 +2,11 @@
 import { validate } from 'class-validator';
 import { AppDataSource } from '../config/typeorm.config';
 import { Organization } from '../models/organization.entity';
+import { ChargePoint } from '../models/chargepoint.entity';
 
 export class OrganizationService {
 
+  private chargePointRepository = AppDataSource.getRepository(ChargePoint);
   private organizationRepository = AppDataSource.getRepository(Organization);
 
   async createOrganization(name: string, legalEntity: string): Promise<Organization> {
@@ -55,11 +57,16 @@ export class OrganizationService {
 
   async deleteOrganization(id: string): Promise<void> {
     const organization = await this.organizationRepository.findOne({
-      where: { id }
+      where: { id },
+      relations: ['chargePoints']
     });
 
     if (!organization) {
       throw new Error('Organization not found');
+    }
+    
+    if (organization.chargePoints && organization.chargePoints.length > 0) {
+      await this.chargePointRepository.remove(organization.chargePoints);
     }
 
     await this.organizationRepository.remove(organization);
