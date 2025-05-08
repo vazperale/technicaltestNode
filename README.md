@@ -51,5 +51,7 @@ How to run the project:
 
 -when you delete a organization, the assigned chargepoints will be deleted in cascade
 
+-Could capture better some error and put it more intuitive and did other performance task, but i tryed to adjust to the estimated duration of the test indicated in it.
+
 
  
