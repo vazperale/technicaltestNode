@@ -1,0 +1,447 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "API de Gestión de Organizaciones y ChargePoints",
+      "version": "1.0.0",
+      "description": "Documentación de la API para gestionar organizaciones y cargadores (ChargePoints)."
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000",
+        "description": "Servidor de desarrollo"
+      }
+    ],
+    "tags": [
+      {
+        "name": "Organizations",
+        "description": "Gestión de organizaciones"
+      },
+      {
+        "name": "ChargePoints",
+        "description": "Gestión de cargadores"
+      }
+    ],
+    "paths": {
+      "/organizations": {
+        "get": {
+          "tags": ["Organizations"],
+          "summary": "Obtiene todas las organizaciones",
+          "responses": {
+            "200": {
+              "description": "Lista de organizaciones",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "ID único de la organización"
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "Nombre de la organización"
+                        },
+                        "legalEntity": {
+                          "type": "string",
+                          "description": "Entidad legal de la organización"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": ["Organizations"],
+          "summary": "Crea una nueva organización",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Nombre de la organización"
+                    },
+                    "legalEntity": {
+                      "type": "string",
+                      "description": "Entidad legal de la organización"
+                    }
+                  },
+                  "required": ["name"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Organización creada exitosamente",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "ID único de la organización"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "Nombre de la organización"
+                      },
+                      "legalEntity": {
+                        "type": "string",
+                        "description": "Entidad legal de la organización"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/organizations/{id}": {
+        "get": {
+          "tags": ["Organizations"],
+          "summary": "Obtiene una organización por ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "description": "ID de la organización"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Organización encontrada",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "ID único de la organización"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "Nombre de la organización"
+                      },
+                      "legalEntity": {
+                        "type": "string",
+                        "description": "Entidad legal de la organización"
+                      },
+                      "chargePoints": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "description": "ID del cargador"
+                            },
+                            "identity": {
+                              "type": "string",
+                              "description": "Identificador del cargador"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": ["Organizations"],
+          "summary": "Actualiza una organización por ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "description": "ID de la organización"
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Nombre de la organización"
+                    },
+                    "legalEntity": {
+                      "type": "string",
+                      "description": "Entidad legal de la organización"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Organización actualizada exitosamente",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "ID único de la organización"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "Nombre de la organización"
+                      },
+                      "legalEntity": {
+                        "type": "string",
+                        "description": "Entidad legal de la organización"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": ["Organizations"],
+          "summary": "Elimina una organización por ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "description": "ID de la organización"
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "Organización eliminada exitosamente"
+            }
+          }
+        }
+      },
+      "/chargepoints": {
+        "get": {
+          "tags": ["ChargePoints"],
+          "summary": "Obtiene todos los cargadores (ChargePoints)",
+          "responses": {
+            "200": {
+              "description": "Lista de cargadores",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "ID único del cargador"
+                        },
+                        "identity": {
+                          "type": "string",
+                          "description": "Identificador único del cargador"
+                        },
+                        "organizationId": {
+                          "type": "string",
+                          "description": "ID de la organización asociada"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": ["ChargePoints"],
+          "summary": "Crea un nuevo cargador (ChargePoint)",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "identity": {
+                      "type": "string",
+                      "description": "Identificador único del cargador"
+                    },
+                    "organizationId": {
+                      "type": "string",
+                      "description": "ID de la organización asociada"
+                    }
+                  },
+                  "required": ["identity", "organizationId"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Cargador creado exitosamente",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "ID único del cargador"
+                      },
+                      "identity": {
+                        "type": "string",
+                        "description": "Identificador único del cargador"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/chargepoints/{id}": {
+        "get": {
+          "tags": ["ChargePoints"],
+          "summary": "Obtiene un cargador por ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "description": "ID del cargador"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Cargador encontrado",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "ID único del cargador"
+                      },
+                      "identity": {
+                        "type": "string",
+                        "description": "Identificador único del cargador"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": ["ChargePoints"],
+          "summary": "Actualiza un cargador por ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "description": "ID del cargador"
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "identity": {
+                      "type": "string",
+                      "description": "Identificador único del cargador"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Cargador actualizado exitosamente",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "ID único del cargador"
+                      },
+                      "identity": {
+                        "type": "string",
+                        "description": "Identificador único del cargador"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": ["ChargePoints"],
+          "summary": "Elimina un cargador por ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "description": "ID del cargador"
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "Cargador eliminado exitosamente"
+            }
+          }
+        }
+      }
+    }
+  }
+  
